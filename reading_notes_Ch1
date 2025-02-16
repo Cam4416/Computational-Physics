@@ -1,0 +1,23 @@
+# Chapter 1
+
+Before writing any code, construct an outline of how the problem 
+is to be solved and what variables/parameters will be needed.
+
+## Overall structure of the program:
+1) declare necessary variables
+2) initialize all variables and parameters --> set the initial values of the variales
+3) do the calculation --> i.e. with the Euler method
+4) store the results
+5) graph for a better understanding
+
+## Testing your program:
+1) Have a rough idea of what the result should be like and decide whether or not is consistent with the code output.  
+2) Compare the code's output with the analytic solution (if available)
+3) Check that the program gives the same answer for different step sizes
+
+##Programming guidelines:
+1) Use subroutines to organize the major tasks
+2) Use descriptive names for variables
+3) Use comment statements
+4) If needed use more lines/variables to make the code more understandable
+5) Make the code look as much as possible like the physics equation
