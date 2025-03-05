@@ -1,0 +1,39 @@
+# Oscillatory Motion and Chaos
+In this chapter the focus is on oscillatory phenomena, in particular the effects that occur in a real oscillatory system (considering friction and a 
+reasonable angle, such as the movement is not considered simple harmonic motion. The simplest one is a pendulum (mass connected by a string to a support, 
+able to swing freely in response to the force of gravity. 
+
+## Simple harmonic motion (3.1)
+Object of interest: Simple pendulum (particle of mass m connected by a massless string to a rigid support). 
+
+### Analytic solution
+θ is the angle that the strings makes with 
+the vertical. Two forces (parallel and perp to the string) are acting on the particle, gravity and tension of the string. 
+Net parallel force = 0
+Net perpendicular force = -mgsin(θ) --> This force is equal to (newton 2 law) mass times acceleration of particle along the particle's trajectory 
+(arc = Fθ = md^2/dt). The displacement along this arc is s = lθ, where l is the lenght of the string. If we assume that θ is so small that sinθ = θ we 
+obtain d^2θ/ dt^2 = -(g/l)*θ  --> Which is the central equation of simple harmonic motion.
+According to this solution the oscillations are sinusoidal and continue forever without decaying.
+
+## Numerical approach
+Letting θi and wi be the numerical approximated angular displacement and velocity of the pendulum at time step i:
+This is the pseudocode for euler_calculate:
+For each time step i calculate w and θ at time step i+1
+  wi+1 = wi -(g/l)θi*Δt
+  θi+1 = θi + wi*Δt
+  ti+1 = ti + Δt
+  Repeat for desired number of time steps
+
+The result of this will be an oscillatory motion with the amplitude that grows with time. This is contrary to the exact solution.
+The problem is in the energy that increases with time, but since the problem has no source of energy or friction the energy should remain constant
+
+## Correct numerical approach
+To find the correct answer we should use the Euler-Cromer method:
+For each time step i calculate w and θ at time step i+1
+  wi+1 = wi - (g/l)θi*Δt
+  θi+1 = θi+wi+1*Δt
+  ti+1 = ti + Δt
+  Repeat for desired numer of time steps
+
+With this method the previous values of w and θ are usef to calulate the new value of w, but the new value of w is used to calulate the new value of θ
+
