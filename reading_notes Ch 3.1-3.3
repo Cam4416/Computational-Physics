@@ -15,7 +15,7 @@ Net perpendicular force = -mgsin(θ) --> This force is equal to (newton 2 law) m
 obtain d^2θ/ dt^2 = -(g/l)*θ  --> Which is the central equation of simple harmonic motion.
 According to this solution the oscillations are sinusoidal and continue forever without decaying.
 
-## Numerical approach
+### Numerical approach
 Letting θi and wi be the numerical approximated angular displacement and velocity of the pendulum at time step i:
 This is the pseudocode for euler_calculate:
 For each time step i calculate w and θ at time step i+1
@@ -27,7 +27,7 @@ For each time step i calculate w and θ at time step i+1
 The result of this will be an oscillatory motion with the amplitude that grows with time. This is contrary to the exact solution.
 The problem is in the energy that increases with time, but since the problem has no source of energy or friction the energy should remain constant
 
-## Correct numerical approach
+### Correct numerical approach
 To find the correct answer we should use the Euler-Cromer method:
 For each time step i calculate w and θ at time step i+1
   wi+1 = wi - (g/l)θi*Δt
@@ -37,3 +37,23 @@ For each time step i calculate w and θ at time step i+1
 
 With this method the previous values of w and θ are usef to calulate the new value of w, but the new value of w is used to calulate the new value of θ
 
+
+## Chaos in the driven nonlinear pendulum (3.3)
+Let's add disipation, an external driving force and nonlinearity all together in the same model. 
+* Not assuming the small angle approximation and not expanding sinθ.
+* Including friction
+* Adding to the model a sinusidal driving force Fd.
+Model will be called the physical pendulum.
+
+Let's construct a program to calculate the numerical solution to the equation of motion:
+d^2θ/dt^2 = -(g/l)sinθ - q(dθ/dt) + Fd*sing(Ωd*t)
+
+For each time tep i (start with i = 0) calculate w and θ at time step i + 1.
+  wi+1 = wi - [(g/l)sinθi - qwi + Fd*sing(Ωd*ti)]Δt
+  θi+1 = θi + wi+1*Δt
+  If θi+1 is out of range (-pi, +pi) add or subtract 2pi to keep it in the range
+
+If we plot the behavior for several values of driving force, with all other parameters beign fixed:
+* Fd = 0: motionis damped and the pensulum comes to rest after few oscilations. Oscillations have a frequenct close to the natural frequency of the undamped pendulum.
+* Fd = 0.5: First we oscillations are affected by the decay of an initial transient as in the case of no driving force. The initial displacement of the pendulum leads to a component of the motiion that decays with time. After this transient is damped away, the pensulum settles into a steady oscillation in response to the driving force. Amplitude determined by a balance btw energy added by the driving force and energy dissipated by the damping.
+* Fd = 1.2: Pensulum doesn't settle int a repeating steady-state behavior. Example of cahotic behavior.
