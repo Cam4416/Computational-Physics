@@ -57,3 +57,7 @@ If we plot the behavior for several values of driving force, with all other para
 * Fd = 0: motionis damped and the pensulum comes to rest after few oscilations. Oscillations have a frequenct close to the natural frequency of the undamped pendulum.
 * Fd = 0.5: First we oscillations are affected by the decay of an initial transient as in the case of no driving force. The initial displacement of the pendulum leads to a component of the motiion that decays with time. After this transient is damped away, the pensulum settles into a steady oscillation in response to the driving force. Amplitude determined by a balance btw energy added by the driving force and energy dissipated by the damping.
 * Fd = 1.2: Pensulum doesn't settle int a repeating steady-state behavior. Example of cahotic behavior.
+
+Results: At low drive the motion is a simple oscillation, at high drive the motion is
+chaotic. Behavior is random and unpredictable --> then how was the program able to calculate it? Because the behaavior of the pensulum is described by differential equation, so once the initial conditions are specified the solution for θ are determined. --> The behaviour is both deterministic and unpredictable at the same time (contraddition btw analytic theory and numerical calculations).
+To make certain certain accurate prediction concerning θ, instead of plotting θ as a function of time plot angular velocity w as a function of θ (phase-space plot).
